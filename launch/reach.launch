@@ -1,0 +1,13 @@
+<launch>
+    <arg name="address" default="192.168.1.102" />
+    <arg name="port" default="9001" />
+
+    <node name="reach_rs_node" pkg="reach_rs_driver" type="reach_rs_driver_node.py" output="screen">
+        <param name="reach_rs_host_or_ip" value="$(arg address)" />
+        <param name="reach_rs_port" value="$(arg port)" />
+        <param name="useRMC" value="true" />
+        <remap from="/fix" to="/reach/rtk/fix" />
+        <remap from="/vel" to="/reach/rtk/vel" />
+        <remap from="/time_reference" to="/reach/rtk/time_reference" />
+    </node>
+</launch>
